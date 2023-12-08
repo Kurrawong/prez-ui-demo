@@ -3,7 +3,7 @@ export default defineNuxtConfig({
   app: {
     baseURL: '/prez-ui-demo/',
     buildAssetsDir: 'nuxt/',
-  },  
+  },
   plugins: [
     { src: '~/plugins/ol.js', ssr: false }
   ],

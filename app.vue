@@ -1,4 +1,8 @@
 <script lang="ts" setup>
+<<<<<<< HEAD
+=======
+
+>>>>>>> dacf3262b25587ed44df1d4ed10d42309ef07d02
 </script>
 
 <template>
