@@ -27,7 +27,7 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          deploy_key: ${{ secrets.ACCESS_TOKEN }} # Replace with your GitHub access token
+          deploy_key: ${{ secrets.DEPLOY_TOKEN }} # Replace with your GitHub access token
           publish_dir: ./dist # Path to the build output directory
           publish_branch: gh-pages # Branch to deploy to
           force_orphan: true # Create an orphan branch if necessary
