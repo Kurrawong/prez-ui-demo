@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import 'vuetify/lib/directives/ripple/VRipple.css';
 </script>
 
 <template>
