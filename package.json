@@ -10,10 +10,8 @@
     "deploy": "git clean -df; push-dir --dir=dist --branch=gh-pages --cleanup"
   },
   "devDependencies": {
-    "@element-plus/nuxt": "^1.0.7",
     "@nuxt/devtools": "latest",
-    "@types/mustache": "^4.2.5",
-    "element-plus": "^2.4.3"
+    "@types/mustache": "^4.2.5"
   },
   "overrides": {
     "vue": "latest"
@@ -33,7 +31,6 @@
     "sass": "^1.69.4",
     "vite-plugin-vuetify": "^1.0.2",
     "vue-types": "^5.1.1",
-    "vue3-openlayers": "^3.1.0",
     "vuetify": "^3.4.0-alpha.1"
   }
 }
