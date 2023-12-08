@@ -6,6 +6,7 @@ export default defineNuxtConfig({
     buildAssetsDir: 'nuxt/',
   },
   plugins: [
+    'plugins/vuetify',
     { src: '~/plugins/ol.js', ssr: false }
   ],
   hooks: {
@@ -36,9 +37,6 @@ export default defineNuxtConfig({
       DATASET_LIST_URL: process.env.DATASET_LIST_URL,
       DATASET_OBJECT_URL: process.env.DATASET_OBJECT_URL            
     },
-  },
-  router: {
-    trailingSlash: false
   },
   devtools: {
     enabled: true
