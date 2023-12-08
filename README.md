@@ -1,4 +1,4 @@
-# OGC Buiding Blocks API UI
+# Prez UI-DEMO
 
-## Go to https://kurrawong.github.io/ogc-building-block-api
+## Go to https://kurrawong.github.io/prez-ui-demo
 
