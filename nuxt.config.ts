@@ -42,7 +42,8 @@ export default defineNuxtConfig({
     enabled: true
   },
   modules: [
-    '@pinia/nuxt'
+    '@pinia/nuxt',
+    '@element-plus/nuxt'
   ],
   pinia: {
     autoImports: [
