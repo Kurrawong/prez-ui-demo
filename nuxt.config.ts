@@ -6,8 +6,7 @@ export default defineNuxtConfig({
     buildAssetsDir: 'nuxt/',
   },
   plugins: [
-    'plugins/vuetify',
-    { src: '~/plugins/ol.js', ssr: false }
+    'plugins/vuetify'
   ],
   hooks: {
     'pages:extend'(pages) {
