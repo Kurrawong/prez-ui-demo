@@ -1,6 +1,8 @@
 import type { HeaderLink } from '~/lib/prez.d'
 import mustache, { render } from 'mustache';
 import { constants, type OverrideTexts, type Texts } from '~/constants'
+
+// get constant overrides
 import overrides from '~/constantsOverride'
 
 export function isURI(str: string): boolean {
