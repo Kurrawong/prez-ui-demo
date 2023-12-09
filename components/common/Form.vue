@@ -47,6 +47,8 @@ const route = useRouter();
 
 </script>
 <template>
+<v-row>
+  <v-col cols="10">
   <div class="form" style="position:relative" v-if="form && form.count > 0">
     <div v-if="headerTitle && form" class="text-h3 mb-5 mt-2">{{ template(headerTitle, form) }}</div>
     <v-chip v-if="form.fields['rdf:type']" variant="flat" style="position: absolute; right: 0;top:0;">{{ form.fields['rdf:type'] }}</v-chip>
@@ -82,8 +84,12 @@ const route = useRouter();
         </tr>
       </tbody>
     </v-table>
-    <CommonProfileSelector :links="links" />
   </div>
+  </v-col>
+  <v-col class="mt-16" cols="2">
+    <CommonProfileSelector :links="links" />
+</v-col>
+  </v-row>
 </template>
 
 <style scoped>

@@ -19,7 +19,7 @@ const searchTermQuery = computed(() => {
     flat
     >
     <v-card-text>
-        <h1 class="mb-5">Search collection</h1>
+        <h2 class="mb-5">Search collection</h2>
         
         <form class="d-flex justify-end mt-5" method="get" @submit.stop.prevent="submitClick">
             <v-text-field

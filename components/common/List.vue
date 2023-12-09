@@ -48,13 +48,13 @@ const route = useRouter();
         </tr>
       </tbody>
     </v-table>
-    <CommonProfileSelector :links="links" />
   </div>
   </v-col>
   <v-col class="mt-16" cols="2">
     <CommonSearchWidget></CommonSearchWidget>
-  </v-col>
-</v-row>
+    <CommonProfileSelector v-if="links" :links="links" />
+    </v-col>
+  </v-row>
 
 </template>
 
