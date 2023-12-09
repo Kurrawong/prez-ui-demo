@@ -29,7 +29,6 @@ const searchTermQuery = computed(() => {
             
             <form class="d-flex justify-end mt-5" method="get" @submit.stop.prevent="submitClick">
                 <v-text-field
-                    :loading="loading"
                     density="compact"
                     variant="solo"
                     label="Enter text to lookup"
@@ -39,7 +38,6 @@ const searchTermQuery = computed(() => {
                     :autofocus="true"
                     name="q"
                     v-model="q"
-                    @click:append-inner="onClick"
                 ></v-text-field>
                 <v-btn type="submit" color="primary" class="ml-5 pl-4 pr-4" size="medium">Search</v-btn>
             </form>
@@ -50,7 +48,7 @@ const searchTermQuery = computed(() => {
             :key="searchTermQuery"
             :header-title="'{{ count }} Result(s)'"
             :data-url="config.getUrl(config.API_BASE_URL + route.fullPath, runtimeConfig)"
-            :fields="['prez:searchResultMatch', 'prez:searchResultPredicate', 'prez:searchResultWeight']"
+            :fields="['prez:searchResultMatch', 'prez:searchResultPredicate', 'prez:searchResultWeight', 'prez:link']"
         />
 
     </div>

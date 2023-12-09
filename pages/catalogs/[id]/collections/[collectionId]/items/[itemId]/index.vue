@@ -25,7 +25,7 @@ const runtimeConfig = useRuntimeConfig();
 
   <ContainersForm
     :key="route.fullPath"
-    :header-title="tpl('{{ header.label }} resource')"
+    :header-title="'{{ header.label }}'"
     :form-title="tpl('form-title')"
     :data-url="config.getUrl(config.API_BASE_URL + route.fullPath, runtimeConfig)"
   />

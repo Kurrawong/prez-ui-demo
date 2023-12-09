@@ -49,7 +49,7 @@ const route = useRouter();
 <template>
   <div class="form" style="position:relative" v-if="form && form.count > 0">
     <div v-if="headerTitle && form" class="text-h3 mb-5 mt-2">{{ template(headerTitle, form) }}</div>
-    <v-chip v-if="form.header.label" variant="flat" style="position: absolute; right: 0;top:0;">{{ form.header.label }}</v-chip>
+    <v-chip v-if="form.fields['rdf:type']" variant="flat" style="position: absolute; right: 0;top:0;">{{ form.fields['rdf:type'] }}</v-chip>
     <v-table theme="dark" v-if="form">
       <thead v-if="formTitle">
         <tr><th colspan="2">{{ template(formTitle, form) }}</th></tr>

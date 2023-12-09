@@ -19,6 +19,8 @@ const fields = (props.fields ? props.fields : Object.keys(props.list.listHeaders
 const route = useRouter();
 </script>
 <template>
+<v-row>
+  <v-col cols="10">
   <div style="position: relative">
     <div v-if="headerTitle && list" class="text-h3 mb-5 mt-2">{{ template(headerTitle, list) }}</div>
     <v-chip variant="flat" style="position: absolute; right: 0;top:0;">{{ list.header.label }}</v-chip>
@@ -48,6 +50,12 @@ const route = useRouter();
     </v-table>
     <CommonProfileSelector :links="links" />
   </div>
+  </v-col>
+  <v-col class="mt-16" cols="2">
+    <CommonSearchWidget></CommonSearchWidget>
+  </v-col>
+</v-row>
+
 </template>
 
 <style scoped>

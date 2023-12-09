@@ -15,7 +15,7 @@ const fields = (props.fields ? props.fields : Object.keys(props.list.listHeaders
   }
   return true;
 });
-console.log("LIST =",props.list)
+//console.log("LIST =",props.list)
 const route = useRouter();
 </script>
 <template>

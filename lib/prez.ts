@@ -137,13 +137,31 @@ export class Prez {
   search(labelPredicates: string[]=[], descriptionPredicates: string[]=[]): List {
     const list = this.list(labelPredicates, descriptionPredicates);
     // expand out predicate labels to full IRI
-    const expandedPredicateLabels = this.expandAll(labelPredicates);
-    const expandedPredicateDescriptions = this.expandAll(descriptionPredicates);
+    // const expandedPredicateLabels = this.expandAll(labelPredicates);
+    // const expandedPredicateDescriptions = this.expandAll(descriptionPredicates);
+    list.listHeaders['prez:link'] = this.getHeader(this.expand('prez:link'), {});
 
     list.list.forEach(item=>{
-      const child = this.getSubjectData(item.iri, expandedPredicateLabels, expandedPredicateDescriptions);
-      console.log(child);
+      if(item._meta['prez:searchResultURI'] && item._meta['prez:searchResultURI'].links) {
+        console.log(item._meta['prez:searchResultURI']);
+        item['prez:link'] = item._meta['prez:searchResultURI'].links.length == 1 ? item._meta['prez:searchResultURI'].links[0] : item._meta['prez:searchResultURI'].links;
+      }
     })
+
+    console.log(list.listHeaders)
+
+// <urn:hash:f899f37003b640bcd48abd876b8a148cefc23b62455ed4d2a1661c4cc5c6098d> a prez:SearchResult ;
+// prez:searchResultMatch "amazing catalog" ;
+// prez:searchResultPredicate rdfs:label ;
+// prez:searchResultURI <https://example.com/TopLevelCatalogTwo> ;
+// prez:searchResultWeight 30 .
+
+// rdfs:label rdfs:label "label" .
+
+// <https://example.com/TopLevelCatalogTwo> rdfs:label "amazing catalog" ;
+// dcterms:identifier "exm:TopLevelCatalogTwo"^^prez:identifier ;
+// prez:link "/c/catalogs/exm:TopLevelCatalogTwo",
+//     "/v/catalogs/exm:TopLevelCatalogTwo" .
 
     return list;
   }
@@ -218,11 +236,6 @@ export class Prez {
       const shortName:string = this.compact(match.predicate.value);
 
       const meta:any = this.getMeta(match, expandedPredicateLabels, expandedPredicateDescriptions);
-      console.log(mi, ' = ' + match.object.value);
-
-//      if(mi == '1') {
-        console.log("XX")
-  //    }
 
       // recrusive form
       if(match.object instanceof BlankNode) {
@@ -238,8 +251,18 @@ export class Prez {
         const valueQuads = this.store.getQuads(subject, match.predicate.value, null, null);
 
         let value:string|string[]|undefined = undefined;//match.predicate.value;
+        let links:string[] = [];
         valueQuads.map(valueQuad=>{
           const { label, description } = this.getAnnotations(valueQuad.object.value, expandedPredicateLabels, expandedPredicateDescriptions);
+//          console.log('** ', valueQuad.object.value, valueQuad.predicate.value)
+          if(valueQuad.predicate.value == 'https://prez.dev/searchResultURI') {
+//            console.log("LOOKUP val")
+            const link = this.firstQuad(valueQuad.object.value, this.expand('prez:link'), null, null);
+            if(link) {
+              links.push(link.object.value);
+            }
+          } 
+
           const useValue = (label !== undefined ? label : valueQuad.object.value);
           if(value !== undefined) {
             if(!Array.isArray(value)) {
@@ -248,12 +271,13 @@ export class Prez {
             value.push(useValue);
           } else {
             value = useValue;
-          }          
+          }
         })
         meta.value = (value === undefined ? match.predicate.value : value);
+        meta.links = links;
+        item._meta![shortName] = meta;
         item[shortName] = meta.value;
       }
-      item._meta![shortName] = meta;
 
     }
   
@@ -298,7 +322,7 @@ export class Prez {
           : subject),
       description: ''
     }
-    console.log('HEAD=', head, 'ITEM=', itemField)
+    //console.log('HEAD=', head, 'ITEM=', itemField)
     return head;
 
   }
