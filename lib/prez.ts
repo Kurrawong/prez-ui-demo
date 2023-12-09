@@ -128,7 +128,15 @@ export class Prez {
           result.listHeaders[field] = this.getHeader(this.expand(field), item[field]);
         }
       })
-  
+
+      if(item._meta && item._meta['prez:searchResultURI'] && item._meta['prez:searchResultURI'].links) {
+        console.log(item._meta['prez:searchResultURI']);
+        item['prez:link'] = item._meta['prez:searchResultURI'].links.length == 1 ? item._meta['prez:searchResultURI'].links[0] : item._meta['prez:searchResultURI'].links;
+        if(!('prez:link' in result.listHeaders)) {
+          result.listHeaders['prez:link'] = this.getHeader(this.expand('prez:link'), {});
+        }
+      }
+
       result.list.push(item);
     }
     return result;
