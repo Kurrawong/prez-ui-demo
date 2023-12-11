@@ -3,7 +3,7 @@ import type { Form, HeaderLink } from '~/lib/prez.d';
 import { template } from '~/helpers/str';
 import registry from './widgets/registry';
 
-const props = defineProps<{form: Form, formTitle?:string, headerTitle?:string, excludeFields?: string[], fields?: string[], info?: boolean, links?: HeaderLink[]}>();
+const props = defineProps<{form: Form, formTitle?:string, headerTitle?:string, nestLevel?:number, excludeFields?: string[], fields?: string[], info?: boolean, links?: HeaderLink[]}>();
 const excludeFields = props.excludeFields ? props.excludeFields : [/^prez:./];
 
 const customWidgets:Record<string, boolean>= {};
@@ -48,7 +48,7 @@ const route = useRouter();
 </script>
 <template>
 <v-row>
-  <v-col cols="10">
+  <v-col :cols="!props.nestLevel ? 10 : 12">
   <div class="form" style="position:relative" v-if="form && form.count > 0">
     <div v-if="headerTitle && form" class="text-h3 mb-5 mt-2">{{ template(headerTitle, form) }}</div>
     <v-chip v-if="form.fields['rdf:type']" variant="flat" style="position: absolute; right: 0;top:0;">{{ form.fields['rdf:type'] }}</v-chip>
@@ -75,6 +75,7 @@ const route = useRouter();
                 v-if="isSubForm(field)"
                 :form="f"
                 :exclude-fields="excludeFields"
+                :nest-level="props.nestLevel ? props.nestLevel + 1 : 1"
               />
             </div>
           </td>
@@ -86,7 +87,7 @@ const route = useRouter();
     </v-table>
   </div>
   </v-col>
-  <v-col class="mt-16" cols="2">
+  <v-col v-if="!props.nestLevel" class="mt-16" cols="2">
     <CommonProfileSelector :links="links" />
 </v-col>
   </v-row>
