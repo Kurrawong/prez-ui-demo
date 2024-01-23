@@ -1,0 +1,1 @@
+const e="https://prez-v4.sgraljii8d3km.ap-southeast-2.cs.amazonlightsail.com",t="catalogs",o=(a,s)=>s.app.baseURL&&s.app.baseURL!="/"?(console.log("RETURN REPLACE"),a.replace(s.app.baseURL,"")):a,p={getUrl:o,API_BASE_URL:e,CATALOG_LIST_URL:t};export{p as c};
