@@ -12,11 +12,9 @@ export const API_BASE_URL = 'https://prez-v4.sgraljii8d3km.ap-southeast-2.cs.ama
 export const CATALOG_LIST_URL = 'catalogs'
 
 const getUrl = (url:string, cfg:RuntimeConfig) => {
-    console.log("CFG APP URL", cfg.app.baseURL)
-    console.log("API URL", url)
-    console.log("REPLACE URL", url.replace(cfg.app.baseURL, ""))
-    
-    if(cfg.app.baseURL) {
+
+    // this is a workaround for when you are deploying to a subpath on gh-pages
+    if(cfg.app.baseURL && cfg.app.baseURL != '/') {
         console.log("RETURN REPLACE")
         return url.replace(cfg.app.baseURL, "");
     } else {
