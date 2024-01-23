@@ -2,8 +2,8 @@
 
 export default defineNuxtConfig({
   app: {
-    baseURL: '/',
-    buildAssetsDir: 'nuxt/',
+//    baseURL: '/prez-ui-demo/',
+    buildAssetsDir: 'nuxt/'
   },
   plugins: [
     'plugins/vuetify'
